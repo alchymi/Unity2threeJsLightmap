@@ -8,6 +8,17 @@ Three.js.
 > worked for me after way too many hours of suffering. If you know a
 > cleaner pipeline, please open an issue, I'll happily update this.
 
+## Before / After
+
+| Lightmap OFF (flat PBR, direct lights only) | Lightmap ON (Unity-baked GI) |
+|:---:|:---:|
+| ![before](docs/before.jpg) | ![after](docs/after.jpg) |
+
+![animated comparison](docs/compare.gif)
+
+> Same frame, same camera, same directional + ambient lights. The only
+> difference is whether the baked lightmap is applied or bypassed.
+
 ## Why?
 
 I already know Unity well. I love Bakery / Progressive GPU. Rebuilding

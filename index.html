@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Unity → Three.js Lightmap Demo</title>
+  <style>
+    :root {
+      --fg: #d7e0ec;
+      --accent: #5ef4d6;
+      --dim: #5b6a82;
+      --bg: #040a14;
+      --panel: rgba(4,10,20,0.88);
+      --border: rgba(94,244,214,0.3);
+    }
+    html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--fg); font-family: 'Share Tech Mono', monospace; overflow: hidden; }
+    canvas { display: block; }
+
+    #debugPanel {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 300px;
+      max-height: calc(100vh - 24px);
+      overflow-y: auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+    #debugPanel .hdr {
+      font-family: Orbitron, sans-serif;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      font-size: 10px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    #debugPanel .grp {
+      color: var(--accent);
+      font-weight: bold;
+      margin: 8px 0 4px;
+      letter-spacing: 0.15em;
+    }
+    #debugPanel .row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 3px 0;
+    }
+    #debugPanel .row span.lbl {
+      width: 72px;
+      color: var(--dim);
+    }
+    #debugPanel input[type=range] {
+      flex: 1;
+      accent-color: var(--accent);
+      min-width: 0;
+    }
+    #debugPanel input[type=color] {
+      width: 32px;
+      height: 18px;
+      border: 1px solid #1e4a5c;
+      background: #000;
+      padding: 0;
+      cursor: pointer;
+    }
+    #debugPanel input[type=checkbox] {
+      accent-color: var(--accent);
+    }
+    #debugPanel .val {
+      width: 40px;
+      color: var(--accent);
+      text-align: right;
+      font-size: 9px;
+    }
+    #debugPanel button {
+      width: 100%;
+      margin-top: 10px;
+      background: #0a1525;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 8px;
+      font: inherit;
+      cursor: pointer;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    #debugPanel button:hover { background: #122a44; }
+
+    #hint {
+      position: absolute;
+      left: 12px; bottom: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      font-size: 10px;
+      color: var(--dim);
+      z-index: 10;
+      max-width: 360px;
+    }
+    #hint b { color: var(--accent); }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="hint">
+    Drop your baked <b>scene.gltf</b> + <b>Lightmap-0_comp_light.png</b> into <b>scenes/</b> and reload.<br>
+    See <b>README.md</b> for the full Unity → Three.js pipeline.
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

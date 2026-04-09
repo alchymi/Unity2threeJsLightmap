@@ -1,0 +1,29 @@
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Unity artifacts (if anyone drops a full project)
+Library/
+Temp/
+Logs/
+obj/
+Build/
+
+# Optional: ignore the user's own scene files (they bring their own)
+# Uncomment if you don't want to commit test scenes:
+# scenes/*.gltf
+# scenes/*.glb
+# scenes/*.bin
+# scenes/*.png
+# scenes/*.jpg
+# !scenes/README.md

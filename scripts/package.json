@@ -1,0 +1,16 @@
+{
+  "name": "unity-threejs-lightmap-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Helper scripts for the Unity → Three.js lightmap bridge (RGBM decoder).",
+  "bin": {
+    "decode-rgbm": "./decode-rgbm.js"
+  },
+  "scripts": {
+    "decode": "node decode-rgbm.js"
+  },
+  "dependencies": {
+    "jimp": "^0.22.12"
+  },
+  "license": "MIT"
+}

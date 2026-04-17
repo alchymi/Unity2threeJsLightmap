@@ -1,6 +1,6 @@
 # Unity → Three.js Lightmap Bridge
 
-A working — but probably not **the** correct — pipeline to take a scene
+A working (but probably not **the** correct) pipeline to take a scene
 baked in Unity and display it with its lightmaps intact in vanilla
 Three.js.
 
@@ -39,7 +39,7 @@ Unity bakes beautiful lightmaps, but GLTF → Three.js is a minefield:
 
 2. **"High Quality" lightmaps are RGBM encoded**. The alpha channel is
    an HDR multiplier. Three.js reads the PNG as straight RGBA and the
-   colors come out completely wrong — black with flecks of oversaturated
+   colors come out completely wrong: black with flecks of oversaturated
    noise.
 
 3. **Three.js `lightMap` is additive** while Unity applies it
@@ -74,7 +74,7 @@ This repo tackles problems (1) and (2) and gives a reasonable answer to (3).
 - **Unity 6+** (tested on 6000.0.60f1, URP)
 - A GLTF exporter that writes at least a valid UV2 (`TEXCOORD_1`):
   - [prefrontalcortex/UnityGLTF](https://github.com/prefrontalcortex/UnityGLTF), or
-  - [matrix-org/UnityGLTF (thirdroom)](https://github.com/matrix-org/UnityGLTF) — branch `thirdroom/dev`
+  - [matrix-org/UnityGLTF (thirdroom)](https://github.com/matrix-org/UnityGLTF), branch `thirdroom/dev`
 - **Node.js 18+** for the RGBM decoder
 - **Three.js r152+** in your project (we need `Texture.channel`)
 
@@ -117,8 +117,8 @@ Export your scene as usual with your GLTF exporter. Prefer **separate
 textures** so you can inspect and decode the lightmap PNG next to the
 `.gltf` and `.bin` files.
 
-The exporter will serialize the **pre-baked UV2** into the mesh —
-no extension support needed on the reader side.
+The exporter will serialize the **pre-baked UV2** into the mesh.
+No extension support needed on the reader side.
 
 ### 5. Restore the original meshes in Unity
 
@@ -140,7 +140,7 @@ node decode-rgbm.js ../scenes/Lightmap-0_comp_light.png
 
 This reads the PNG, multiplies each pixel's RGB by `(alpha / 255) * 5.0`
 (the standard Unity RGBM decode), clamps to 0–255 and writes the file
-back with alpha set to 255 everywhere. The decoder is idempotent — if
+back with alpha set to 255 everywhere. The decoder is idempotent: if
 all alpha values are already 255, it leaves the file alone.
 
 > **Tip**: you can skip this step entirely if you set **Player Settings
@@ -178,7 +178,7 @@ lmTex.colorSpace = THREE.SRGBColorSpace; // Lightmap is sRGB-encoded
 
 The single most important line is `tex.channel = 1`. Without it
 Three.js defaults to UV0 (the base color UV set) and your lightmap reads
-the same coordinates as your diffuse map — hello rainbow walls.
+the same coordinates as your diffuse map. Hello rainbow walls.
 
 ## Debug panel
 
@@ -220,8 +220,8 @@ as JSON, so you can paste them straight into your own scene config.
 ## Is this *the* way?
 
 Honestly? **No idea.** This is what worked for me. If you have a
-cleaner path — using `MX_lightmap` properly, a dedicated Three.js
-extension plugin, or a better exporter — please tell me. I'll happily
+cleaner path (using `MX_lightmap` properly, a dedicated Three.js
+extension plugin, or a better exporter), please tell me. I'll happily
 update this repo and credit you.
 
 ## License
@@ -233,5 +233,5 @@ MIT. Use, fork, remix, tear apart, improve.
 - `Texture.channel` trick: [three.js discourse](https://discourse.threejs.org/t/lightmap-not-applying-correctly/58398)
 - RGBM formula: the standard Unity `rgb * alpha * 5.0`
 - Everyone who's already written about this on Twitter, Discord and
-  forums — this repo is mostly a concrete, runnable synthesis of
+  forums. This repo is mostly a concrete, runnable synthesis of
   advice scattered across many threads.
